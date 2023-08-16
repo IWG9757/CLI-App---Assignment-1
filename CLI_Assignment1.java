@@ -57,6 +57,7 @@ public class CLI_Assignment1{
                     
                     boolean valid;
                     String name;
+                    double initialDeposit;
 
 
                     //Get account holder name and Validating name of the account holder
@@ -91,7 +92,25 @@ public class CLI_Assignment1{
                     }
                     newAccountHolderName[newAccountHolderName.length-1] = name;
                     accountHolderName = newAccountHolderName;
-                    
+
+
+                    // Get initial deposit amount and validate it.
+                    do {
+                        valid = true;
+                        System.out.println("Enter Initial Deposit (minimum 5000): ");
+                        try {
+                            initialDeposit = Double.parseDouble(scanner.nextLine());
+                            if (initialDeposit < 5000) {
+                                System.out.printf("%sInitial deposit must be at least 5000%s\n", COLOR_RED_BOLD, RESET);
+                                valid = false;
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.printf("%sInvalid input. Please enter a valid amount%s\n", COLOR_RED_BOLD, RESET);
+                            valid = false;
+                        }
+                    } while (!valid);
+
+
                     //ask for new entry.
                     System.out.println(name + " added succesfully. Do you want to open new account (Y/n)? ");
                     if(scanner.nextLine().toUpperCase().strip().equals("Y")){
