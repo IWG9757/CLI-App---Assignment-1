@@ -5,9 +5,9 @@ public class CLI_Assignment1{
     private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         final String CLEAR = "\033[H\033[2J"; //To clear the terminal 
-        final String COLOR_BLUE_BOLD = "\033[33;1m";
+        final String COLOR_BLUE_BOLD = "\033[34;1m";
         final String RESET = "\033[0m";
-        final String COLOR_RED_BOLD = "\033[33;1m";
+        final String COLOR_RED_BOLD = "\033[31;1m";
        
         final String DASHBOARD = "Welcome to Smart Banking App";
         final String OPEN_ACCOUNT = "Open New Account";
@@ -18,7 +18,7 @@ public class CLI_Assignment1{
         final String DROP_ACCOUNT = "Drop Existing Acccount";
 
         String[] accountHolderName = new String[0];
-        String[] accountNumber = new String[0];
+      
 
         String screen = DASHBOARD;
 
@@ -32,7 +32,7 @@ public class CLI_Assignment1{
 
             switch(screen){
                 case DASHBOARD: 
-                    System.out.println("\n[1]. Welcome to Smart Banking App\n[2]. Open New Account\n[3]. Deposit Money\n[4]. Withdraw Money\n[5]. Transfer Money\n[6]. Check Account Balance\n[7]. Drop Existing Account\n[8]. Exit\n");
+                    System.out.println("[1]. Open New Account\n[2]. Deposit Money\n[3]. Withdraw Money\n[4]. Transfer Money\n[5]. Check Account Balance\n[6]. Drop Existing Account\n[7]. Exit\n");
                     System.out.println("Enter an option to continue > ");
                     int option = scanner.nextInt();
                     scanner.nextLine();
@@ -50,23 +50,28 @@ public class CLI_Assignment1{
                     break;
 
 
-
+                //To open account
                 case OPEN_ACCOUNT:
-                    System.out.printf("New Account Number: SDB-S%d \n", (accountNumber.length+1));
-                    boolean valid = false;
+
+                    //Generate the account number
+                    System.out.printf("New Account Number: SDB-S%05d \n", (accountHolderName.length+1));
+                    
+                    boolean valid;
                     String name;
 
+
+                    //Get account holder name and Validating name of the account holder
                     do{
 
-
+                        valid = true;
                         System.out.println("Enter Account Holder Name: ");
 
-                        
-                        
                         name = scanner.nextLine().strip();
 
-                        if(!name.isBlank()){
+                        if(name.isBlank()){
                             System.out.printf("%sName can't be empty%s\n",COLOR_RED_BOLD, RESET);
+                            valid = false;
+                            continue;
                         }
 
                         for (int i = 0; i < name.length(); i++) {
@@ -77,11 +82,14 @@ public class CLI_Assignment1{
                             }
                         
                         }
+
                     }while(!valid);
 
+                    //Add the new account holder name to the array.
+
                     String[] newAccountHolderName = new String[accountHolderName.length + 1];
-                    for (int i = 0; i < newAccountHolderName.length; i++) {
-                        newAccountHolderName[i] = accountNumber[i];
+                    for (int i = 0; i < accountHolderName.length; i++) {
+                        newAccountHolderName[i] = accountHolderName[i];
                     }
                     newAccountHolderName[newAccountHolderName.length-1] = name;
                     accountHolderName = newAccountHolderName;
@@ -94,10 +102,13 @@ public class CLI_Assignment1{
                     screen = DASHBOARD;
                     break;
 
+
+                default:
+                    System.exit(0);
+
                     
 
                 }
-
             
 
             }while(true);
