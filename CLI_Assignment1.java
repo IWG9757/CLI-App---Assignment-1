@@ -79,6 +79,21 @@ public class CLI_Assignment1{
                         }
                     }while(!valid);
 
+                    String[] newAccountHolderName = new String[accountHolderName.length + 1];
+                    for (int i = 0; i < newAccountHolderName.length; i++) {
+                        newAccountHolderName[i] = accountNumber[i];
+                    }
+                    newAccountHolderName[newAccountHolderName.length-1] = name;
+                    accountHolderName = newAccountHolderName;
+                    
+
+                    System.out.println(name + " added succesfully. Do you want to open new account (Y/n)? ");
+                    if(scanner.nextLine().toUpperCase().strip().equals("Y")){
+                        continue;
+                    } 
+                    screen = DASHBOARD;
+                    break;
+
                     
 
                 }
