@@ -26,9 +26,9 @@ public class CLI_Assignment1{
             final String APP_TITLE = String.format("%s%s%s", COLOR_BLUE_BOLD, screen, RESET);
 
             System.out.println(CLEAR);
-            System.out.println("-".repeat(30));
-            System.out.println(" ".repeat((30 - APP_TITLE.length() + 7)/2).concat(APP_TITLE));
-            System.out.println("-".repeat(30));
+            System.out.println("-".repeat(50));
+            System.out.println(" ".repeat((50 - APP_TITLE.length() + 7)/2).concat(APP_TITLE));
+            System.out.println("-".repeat(50));
 
             switch(screen){
                 case DASHBOARD: 
@@ -48,7 +48,43 @@ public class CLI_Assignment1{
                         default: continue;
                     }
                     break;
+
+
+
+                case OPEN_ACCOUNT:
+                    System.out.printf("New Account Number: SDB-S%d \n", (accountNumber.length+1));
+                    boolean valid = false;
+                    String name;
+
+                    do{
+
+
+                        System.out.println("Enter Account Holder Name: ");
+
+                        
+                        
+                        name = scanner.nextLine().strip();
+
+                        if(!name.isBlank()){
+                            System.out.printf("%sName can't be empty%s\n",COLOR_RED_BOLD, RESET);
+                        }
+
+                        for (int i = 0; i < name.length(); i++) {
+                           if(!(Character.isLetter(name.charAt(i)) || Character.isSpaceChar(name.charAt(i)))) {
+                                System.out.printf("%sInvalid Names%s\n", COLOR_RED_BOLD, RESET);
+                                valid = false;
+                                break;
+                            }
+                        
+                        }
+                    }while(!valid);
+
+                    
+
                 }
+
+            
+
             }while(true);
                 
                     
