@@ -18,6 +18,8 @@ public class CLI_Assignment1{
         final String DROP_ACCOUNT = "Drop Existing Acccount";
 
         String[] accountHolderName = new String[0];
+        //String[] accountNumber = new String[0];
+        double[] deposit = new double[0];
         String screen = DASHBOARD;
 
         do {
@@ -54,10 +56,11 @@ public class CLI_Assignment1{
 
                     //Generate the account number
                     System.out.printf("New Account Number: SDB-S%05d \n", (accountHolderName.length+1));
+
                     
                     boolean valid;
                     String name;
-                    double initialDeposit;
+                    double initialDeposit=0;
 
 
                     //Get account holder name and Validating name of the account holder
@@ -109,6 +112,14 @@ public class CLI_Assignment1{
                             valid = false;
                         }
                     } while (!valid);
+
+                    //Add the ne deposit to the array.
+                    double[] newDeposit = new double[deposit.length + 1];
+                    for (int i = 0; i < deposit.length; i++) {
+                        newDeposit[i] = deposit[i];
+                    }
+                    newDeposit[newDeposit.length-1] = initialDeposit;
+                    deposit = newDeposit;
 
 
                     //ask for new entry.
