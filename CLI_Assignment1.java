@@ -22,6 +22,39 @@ public class CLI_Assignment1{
 
         String screen = DASHBOARD;
 
+        do {
+            final String APP_TITLE = String.format("%s%s%s", COLOR_BLUE_BOLD, screen, RESET);
+
+            System.out.println(CLEAR);
+            System.out.println("-".repeat(30));
+            System.out.println(" ".repeat((30 - APP_TITLE.length() + 7)/2).concat(APP_TITLE));
+            System.out.println("-".repeat(30));
+
+            switch(screen){
+                case DASHBOARD: 
+                    System.out.println("\n[1]. Welcome to Smart Banking App\n[2]. Open New Account\n[3]. Deposit Money\n[4]. Withdraw Money\n[5]. Transfer Money\n[6]. Check Account Balance\n[7]. Drop Existing Account\n[8]. Exit\n");
+                    System.out.println("Enter an option to continue > ");
+                    int option = scanner.nextInt();
+                    scanner.nextLine();
+
+                    switch (option){
+                        case 1: screen = OPEN_ACCOUNT; break;
+                        case 2: screen = DEPOSIT_MONEY; break;
+                        case 3: screen = WITHDRAW_MONEY; break;
+                        case 4: screen = TRANSFER_MONEY; break;
+                        case 5: screen = CHECK_BALANCE;break;
+                        case 6: screen = DROP_ACCOUNT; break;
+                        case 7: System.exit(0); break;
+                        default: continue;
+                    }
+                    break;
+                }
+            }while(true);
+                
+                    
+
+
+
 
         
     }
