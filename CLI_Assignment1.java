@@ -18,11 +18,10 @@ public class CLI_Assignment1{
         final String DROP_ACCOUNT = "Drop Existing Acccount";
 
         String[] accountHolderName = new String[0];
-      
-
         String screen = DASHBOARD;
 
         do {
+            //Print dashboard
             final String APP_TITLE = String.format("%s%s%s", COLOR_BLUE_BOLD, screen, RESET);
 
             System.out.println(CLEAR);
@@ -86,7 +85,6 @@ public class CLI_Assignment1{
                     }while(!valid);
 
                     //Add the new account holder name to the array.
-
                     String[] newAccountHolderName = new String[accountHolderName.length + 1];
                     for (int i = 0; i < accountHolderName.length; i++) {
                         newAccountHolderName[i] = accountHolderName[i];
@@ -94,7 +92,7 @@ public class CLI_Assignment1{
                     newAccountHolderName[newAccountHolderName.length-1] = name;
                     accountHolderName = newAccountHolderName;
                     
-
+                    //ask for new entry.
                     System.out.println(name + " added succesfully. Do you want to open new account (Y/n)? ");
                     if(scanner.nextLine().toUpperCase().strip().equals("Y")){
                         continue;
@@ -102,21 +100,15 @@ public class CLI_Assignment1{
                     screen = DASHBOARD;
                     break;
 
-
+                 
                 default:
                     System.exit(0);
-
-                    
-
+  
                 }
             
 
             }while(true);
-                
-                    
-
-
-
+            
 
         
     }
